@@ -1,19 +1,18 @@
 """
 SenseBridge AI — Flask Backend
-Mock API server for the SenseBridge AI accessibility engine.
+Production-ready API server + React static file serving for Render deployment.
 """
 
 import os
 import time
-import json
 from datetime import datetime
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", static_url_path="")
 CORS(app, origins=os.getenv('CORS_ORIGINS', '*').split(','))
 
 API_VERSION = "1.0"
@@ -37,6 +36,7 @@ def simulate_delay(seconds=1.5):
 # ============================
 # Health Check
 # ============================
+@app.route('/api/health', methods=['GET'])
 @app.route('/health', methods=['GET'])
 def health():
     return make_response({
@@ -44,11 +44,11 @@ def health():
         "service": "SenseBridge AI API",
         "uptime": "active",
         "endpoints": [
-            "/upload-image",
-            "/speech-to-text",
-            "/simplify-text",
-            "/detect-crisis",
-            "/translate"
+            "/api/upload-image",
+            "/api/speech-to-text",
+            "/api/simplify-text",
+            "/api/detect-crisis",
+            "/api/translate"
         ]
     })
 
@@ -56,6 +56,7 @@ def health():
 # ============================
 # Image Upload & Description
 # ============================
+@app.route('/api/upload-image', methods=['POST'])
 @app.route('/upload-image', methods=['POST'])
 def upload_image():
     simulate_delay(1.5)
@@ -75,6 +76,7 @@ def upload_image():
 # ============================
 # Speech to Text
 # ============================
+@app.route('/api/speech-to-text', methods=['POST'])
 @app.route('/speech-to-text', methods=['POST'])
 def speech_to_text():
     simulate_delay(1.5)
@@ -91,6 +93,7 @@ def speech_to_text():
 # ============================
 # Simplify Text
 # ============================
+@app.route('/api/simplify-text', methods=['POST'])
 @app.route('/simplify-text', methods=['POST'])
 def simplify_text():
     simulate_delay(1.5)
@@ -111,6 +114,7 @@ def simplify_text():
 # ============================
 # Crisis Detection
 # ============================
+@app.route('/api/detect-crisis', methods=['POST'])
 @app.route('/detect-crisis', methods=['POST'])
 def detect_crisis():
     simulate_delay(2.0)
@@ -137,6 +141,7 @@ def detect_crisis():
 # ============================
 # Translation
 # ============================
+@app.route('/api/translate', methods=['POST'])
 @app.route('/translate', methods=['POST'])
 def translate():
     simulate_delay(1.5)
@@ -162,6 +167,23 @@ def translate():
         "target_code": target_lang,
         "translation_model": "Translation API (simulated)"
     })
+
+
+# ============================
+# Serve React Frontend
+# ============================
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
+
+@app.route('/<path:path>')
+def serve_files(path):
+    """Serve static files or fallback to index.html for client-side routing."""
+    full_path = os.path.join(app.static_folder, path)
+    if os.path.exists(full_path):
+        return send_from_directory(app.static_folder, path)
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 # ============================
