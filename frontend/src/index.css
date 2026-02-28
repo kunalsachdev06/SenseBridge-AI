@@ -1,0 +1,333 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================
+   SenseBridge AI Design System
+   ============================ */
+
+:root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Light theme */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fc;
+    --bg-card: rgba(255, 255, 255, 0.7);
+    --text-primary: #0f0f1a;
+    --text-secondary: #4a4a6a;
+    --text-muted: #8888aa;
+    --border-color: rgba(139, 92, 246, 0.15);
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow-color: rgba(139, 92, 246, 0.08);
+    --gradient-start: #8b5cf6;
+    --gradient-end: #3b82f6;
+    --accent-glow: rgba(139, 92, 246, 0.2);
+}
+
+.dark {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #0f0f2a;
+    --bg-card: rgba(18, 18, 42, 0.7);
+    --text-primary: #f0f0ff;
+    --text-secondary: #b0b0d0;
+    --text-muted: #6a6a8a;
+    --border-color: rgba(139, 92, 246, 0.25);
+    --glass-bg: rgba(18, 18, 42, 0.6);
+    --glass-border: rgba(139, 92, 246, 0.15);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --gradient-start: #a78bfa;
+    --gradient-end: #60a5fa;
+    --accent-glow: rgba(139, 92, 246, 0.3);
+}
+
+/* ============================
+   Base Styles
+   ============================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+/* ============================
+   Skip to Content
+   ============================ */
+
+.skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    padding: 12px 24px;
+    background: var(--gradient-start);
+    color: #fff;
+    border-radius: 0 0 8px 8px;
+    z-index: 10000;
+    font-weight: 600;
+    transition: top 0.3s;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* ============================
+   Focus Styles
+   ============================ */
+
+*:focus-visible {
+    outline: 3px solid var(--gradient-start);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ============================
+   Glassmorphism
+   ============================ */
+
+@layer components {
+    .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 8px 32px var(--shadow-color);
+    }
+
+    .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px var(--shadow-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px var(--shadow-color), 0 0 30px var(--accent-glow);
+        border-color: var(--gradient-start);
+    }
+
+    /* Gradient Text */
+    .gradient-text {
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Gradient Border */
+    .gradient-border {
+        position: relative;
+        border-radius: 20px;
+        background: var(--bg-card);
+    }
+
+    .gradient-border::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        padding: 1px;
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .gradient-border:hover::before {
+        opacity: 1;
+    }
+
+    /* Section Container */
+    .section-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    /* Section Heading */
+    .section-heading {
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .section-subheading {
+        font-family: var(--font-body);
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: var(--text-secondary);
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto 3.5rem;
+        line-height: 1.7;
+    }
+
+    /* CTA Button */
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 32px;
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        color: #fff;
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 1rem;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 32px;
+        background: transparent;
+        color: var(--text-primary);
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+        border-color: var(--gradient-start);
+        background: var(--accent-glow);
+        transform: translateY(-2px);
+    }
+
+    /* Section Divider */
+    .section-divider {
+        height: 1px;
+        max-width: 200px;
+        margin: 0 auto;
+        background: linear-gradient(90deg, transparent, var(--gradient-start), transparent);
+        opacity: 0.3;
+    }
+}
+
+/* ============================
+   Accessibility: Large Text Mode
+   ============================ */
+
+.large-text body,
+.large-text {
+    font-size: 120%;
+}
+
+.large-text .section-heading {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+}
+
+/* ============================
+   Accessibility: High Contrast
+   ============================ */
+
+.high-contrast {
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --bg-primary: #000000;
+    --bg-secondary: #111111;
+    --border-color: #ffffff;
+    --glass-bg: rgba(0, 0, 0, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================
+   Reduced Motion
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Manual reduce motion toggle via accessibility panel */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* ============================
+   Scrollbar
+   ============================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--gradient-start), var(--gradient-end));
+    border-radius: 4px;
+}
+
+/* ============================
+   Selection
+   ============================ */
+
+::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: var(--text-primary);
+}

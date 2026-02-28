@@ -1,0 +1,22 @@
+{
+    "image_description": {
+        "description": "A person walking through a busy street market with colorful stalls",
+        "confidence": 0.94,
+        "objects_detected": [
+            "person",
+            "market stall",
+            "fruits"
+        ]
+    },
+    "speech_transcript": {
+        "transcript": "Hello, welcome to SenseBridge AI.",
+        "confidence": 0.97,
+        "language": "English"
+    },
+    "crisis_detection": {
+        "is_crisis": true,
+        "threat_type": "fire",
+        "severity": "high",
+        "message": "FIRE DETECTED — Emergency protocols activated."
+    }
+}
