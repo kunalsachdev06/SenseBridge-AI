@@ -186,7 +186,7 @@ export default function LiveDemo() {
                     viewport={viewportOnce}
                 >
                     <motion.p variants={fadeUp} className="text-center text-sm font-medium tracking-widest uppercase gradient-text mb-4">
-                        See It In Action
+                        See It In Action (Demo)
                     </motion.p>
                     <motion.h2 variants={fadeUp} className="section-heading">
                         Try <span className="gradient-text">SenseBridge AI</span>
