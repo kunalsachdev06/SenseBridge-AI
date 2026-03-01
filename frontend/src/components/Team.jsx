@@ -1,31 +1,22 @@
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from '../utils/motionVariants';
-import { Linkedin, Eye, Mic, Monitor } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 
 const team = [
     {
-        name: 'Team Member 1',
-        role: 'Vision & Backend',
-        desc: 'Leads computer vision pipeline and Flask API architecture.',
-        icon: Eye,
-        color: 'from-violet-500 to-purple-600',
-        linkedin: '#',
+        name: 'Kunal Sachdev',
+        photo: '/team/kunal.jpg',
+        linkedin: 'https://www.linkedin.com/in/kunal-sachdev-/',
     },
     {
-        name: 'Team Member 2',
-        role: 'Speech & Language',
-        desc: 'Drives speech recognition, translation, and NLP modules.',
-        icon: Mic,
-        color: 'from-blue-500 to-cyan-500',
-        linkedin: '#',
+        name: 'Sachit Verma',
+        photo: '/team/sachit.jpg',
+        linkedin: 'https://www.linkedin.com/in/sachit-verma-295532283/',
     },
     {
-        name: 'Team Member 3',
-        role: 'Frontend & Integration',
-        desc: 'Architects the React interface and end-to-end integrations.',
-        icon: Monitor,
-        color: 'from-emerald-500 to-teal-500',
-        linkedin: '#',
+        name: 'Anushka Bakshi',
+        photo: '/team/anushka.jpg',
+        linkedin: 'https://www.linkedin.com/in/anushka-bakshi-79b2a9321/',
     },
 ];
 
@@ -51,7 +42,7 @@ export default function Team() {
 
                     <motion.div
                         variants={staggerContainer}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
                     >
                         {team.map((member, i) => (
                             <motion.div
@@ -60,20 +51,26 @@ export default function Team() {
                                 whileHover={{ y: -8 }}
                                 className="glass-card p-8 text-center cursor-default group"
                             >
-                                {/* Avatar */}
-                                <div className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${member.color} flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-glow transition-shadow duration-300`}>
-                                    <member.icon size={36} className="text-white" strokeWidth={1.5} />
+                                {/* Profile Photo */}
+                                <div className="relative w-28 h-28 mx-auto mb-5">
+                                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md scale-110" />
+                                    <img
+                                        src={member.photo}
+                                        alt={member.name}
+                                        className="relative w-28 h-28 rounded-full object-cover border-2 border-[var(--border-color)] group-hover:border-primary-500/60 transition-all duration-300 shadow-lg"
+                                        loading="lazy"
+                                    />
                                 </div>
 
-                                <h3 className="font-heading font-bold text-xl mb-1">{member.name}</h3>
-                                <p className="text-sm font-medium gradient-text mb-3">{member.role}</p>
-                                <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">{member.desc}</p>
+                                {/* Name */}
+                                <h3 className="font-heading font-bold text-xl mb-4">{member.name}</h3>
 
+                                {/* LinkedIn Button */}
                                 <a
                                     href={member.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium glass group-hover:border-primary-500/50 transition-all"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium glass group-hover:border-primary-500/50 hover:bg-primary-500/10 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-[var(--bg-secondary)]"
                                     aria-label={`${member.name} LinkedIn profile`}
                                 >
                                     <Linkedin size={16} />

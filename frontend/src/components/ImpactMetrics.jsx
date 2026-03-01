@@ -33,7 +33,7 @@ function Counter({ target, suffix = '', decimals = 0, duration = 2500 }) {
 
 const metrics = [
     { icon: Users, value: 1.3, suffix: 'B+', decimals: 1, label: 'People Impacted Globally', desc: 'Potential users who could benefit from accessibility technology' },
-    { icon: Globe, value: 5, suffix: '', decimals: 0, label: 'Languages Supported', desc: 'English, Hindi, Tamil, Telugu, Marathi' },
+    { icon: Globe, value: 10, suffix: '', decimals: 0, label: 'Languages Supported', desc: 'English, Hindi, Tamil and more' },
     { icon: Layers, value: 4, suffix: '', decimals: 0, label: 'Accessibility Modes', desc: 'Vision, hearing, reading, and crisis assistance' },
     { icon: Cpu, value: 1, suffix: '', decimals: 0, label: 'Unified Engine', desc: 'All modes powered by a single intelligent platform' },
 ];

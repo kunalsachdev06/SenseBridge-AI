@@ -6,7 +6,7 @@ import {
     AlertTriangle, Shield, CheckCircle2,
 } from 'lucide-react';
 
-const API_BASE = '/api';
+const API_BASE = `${import.meta.env.VITE_API_URL || ''}/api`;
 
 const tabs = [
     { id: 'image', label: 'Image Description', icon: Image },
@@ -345,8 +345,8 @@ export default function LiveDemo() {
                                     exit={{ opacity: 0 }}
                                     transition={isCrisis ? { x: { duration: 0.4, delay: 0.2 } } : {}}
                                     className={`rounded-[20px] p-8 border backdrop-blur-xl ${isCrisis
-                                            ? 'bg-red-500/5 border-red-500/30 shadow-[0_0_40px_rgba(239,68,68,0.15)]'
-                                            : 'glass-card'
+                                        ? 'bg-red-500/5 border-red-500/30 shadow-[0_0_40px_rgba(239,68,68,0.15)]'
+                                        : 'glass-card'
                                         }`}
                                 >
                                     {/* Result header */}
@@ -376,8 +376,8 @@ export default function LiveDemo() {
                                             <div
                                                 key={key}
                                                 className={`flex flex-col sm:flex-row sm:items-start gap-2 p-4 rounded-xl ${isCrisis
-                                                        ? 'bg-red-500/5 border border-red-500/10'
-                                                        : 'bg-[var(--bg-primary)]/50'
+                                                    ? 'bg-red-500/5 border border-red-500/10'
+                                                    : 'bg-[var(--bg-primary)]/50'
                                                     }`}
                                             >
                                                 <span className={`text-xs font-medium uppercase tracking-wider min-w-[140px] ${isCrisis ? 'text-red-400' : 'text-primary-400'

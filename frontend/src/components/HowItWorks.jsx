@@ -78,7 +78,7 @@ export default function HowItWorks() {
             ref={sectionRef}
             id="how-it-works"
             className="relative"
-            style={{ height: '250vh' }}
+            style={{ height: '400vh' }}
             aria-label="How it works"
         >
             {/* Sticky viewport */}
