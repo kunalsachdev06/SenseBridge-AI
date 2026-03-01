@@ -55,9 +55,7 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                     {/* Logo */}
                     <a href="#" className="flex items-center gap-2 group" aria-label="SenseBridge AI Home">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center shadow-glow">
-                            <span className="text-white font-heading font-bold text-lg">S</span>
-                        </div>
+                        <img src="/logo.png" alt="SenseBridge AI Logo" className="w-10 h-10 rounded-xl object-contain" />
                         <span className="font-heading font-bold text-xl tracking-tight">
                             Sense<span className="gradient-text">Bridge</span>
                         </span>
