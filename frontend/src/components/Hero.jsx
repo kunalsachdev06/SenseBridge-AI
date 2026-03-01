@@ -63,14 +63,6 @@ export default function Hero() {
                     animate="visible"
                     className="flex flex-col items-center"
                 >
-                    {/* Badge */}
-                    <motion.div
-                        variants={fadeUp}
-                        className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass text-sm font-medium mb-8"
-                    >
-                        <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                        Hackathon Project 2025
-                    </motion.div>
 
                     {/* Title */}
                     <motion.h1

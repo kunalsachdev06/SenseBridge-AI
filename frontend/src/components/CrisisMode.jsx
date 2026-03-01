@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from '../utils/motionVariants';
 import {
-    Flame, Crosshair, Car, Bomb, AlertTriangle, Volume2, Bell, Globe,
+    Flame, Crosshair, Car, Bomb, AlertTriangle, Volume2, Bell,
 } from 'lucide-react';
 
 const threats = [
@@ -21,11 +21,10 @@ export default function CrisisMode() {
     return (
         <section
             id="crisis"
-            className="relative py-24 md:py-32 overflow-hidden"
-            style={{ background: '#0a0a12' }}
+            className="relative py-24 md:py-32 overflow-hidden bg-[var(--bg-primary)]"
             aria-label="Smart Crisis Detection"
         >
-            {/* Radial Red Glow */}
+            {/* Radial Red Glow — adapts to theme via opacity */}
             <div className="absolute inset-0">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-500/10 blur-[120px]" />
                 <motion.div
@@ -48,16 +47,16 @@ export default function CrisisMode() {
                     <motion.p variants={fadeUp} className="text-center text-sm font-medium tracking-widest uppercase text-red-400 mb-4">
                         Safety First
                     </motion.p>
-                    <motion.h2 variants={fadeUp} className="section-heading text-white">
+                    <motion.h2 variants={fadeUp} className="section-heading">
                         Smart <span className="text-red-400">Crisis</span> Detection
                     </motion.h2>
-                    <motion.p variants={fadeUp} className="section-subheading text-gray-400">
+                    <motion.p variants={fadeUp} className="section-subheading">
                         SenseBridge is not just assistive — it is <span className="text-red-400 font-semibold">protective</span>.
                     </motion.p>
 
                     {/* Threat Detection */}
                     <motion.div variants={fadeUp} className="mb-16">
-                        <p className="text-center text-sm text-gray-500 mb-6 uppercase tracking-wider">Detects</p>
+                        <p className="text-center text-sm text-[var(--text-muted)] mb-6 uppercase tracking-wider">Detects</p>
                         <div className="flex flex-wrap justify-center gap-4 md:gap-6">
                             {threats.map((threat, i) => (
                                 <motion.div
@@ -72,7 +71,7 @@ export default function CrisisMode() {
                                     >
                                         <threat.icon size={24} className={threat.color} />
                                     </motion.div>
-                                    <span className="font-heading font-bold text-white">{threat.label}</span>
+                                    <span className="font-heading font-bold">{threat.label}</span>
                                 </motion.div>
                             ))}
                         </div>
@@ -80,7 +79,7 @@ export default function CrisisMode() {
 
                     {/* System Response */}
                     <motion.div variants={fadeUp}>
-                        <p className="text-center text-sm text-gray-500 mb-6 uppercase tracking-wider">System Triggers</p>
+                        <p className="text-center text-sm text-[var(--text-muted)] mb-6 uppercase tracking-wider">System Triggers</p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                             {responses.map((resp, i) => (
                                 <motion.div
@@ -91,8 +90,8 @@ export default function CrisisMode() {
                                     <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center mx-auto mb-4">
                                         <resp.icon size={26} className="text-red-400" />
                                     </div>
-                                    <h3 className="font-heading font-bold text-white mb-2">{resp.label}</h3>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{resp.desc}</p>
+                                    <h3 className="font-heading font-bold mb-2">{resp.label}</h3>
+                                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{resp.desc}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -132,7 +131,7 @@ export default function CrisisMode() {
                             </motion.div>
                             <div>
                                 <p className="text-sm font-bold text-red-400">CRISIS MODE ACTIVE</p>
-                                <p className="text-xs text-gray-500">All channels monitored • Multi-language alerts ready</p>
+                                <p className="text-xs text-[var(--text-muted)]">All channels monitored • Multi-language alerts ready</p>
                             </div>
                             <div className="ml-auto flex gap-1">
                                 <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />

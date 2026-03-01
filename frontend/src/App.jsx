@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
@@ -19,6 +20,13 @@ import CTA from './components/CTA';
 import Footer from './components/Footer';
 
 export default function App() {
+    // Reset scroll position on page load/reload
+    useEffect(() => {
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
             <ScrollProgress />

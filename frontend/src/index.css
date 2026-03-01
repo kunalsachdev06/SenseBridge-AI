@@ -63,7 +63,11 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.4s ease, color 0.4s ease;
-    overflow-x: hidden;
+}
+
+/* Navbar: remove bottom border artifact when glass class applies */
+nav.glass {
+    border-bottom: none;
 }
 
 h1,
@@ -257,13 +261,29 @@ h6 {
    Accessibility: Large Text Mode
    ============================ */
 
-.large-text body,
 .large-text {
-    font-size: 120%;
+    font-size: 112.5%;
+    /* 18px base instead of breaking 120% */
 }
 
 .large-text .section-heading {
-    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.large-text .section-subheading {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+/* Prevent navbar from breaking */
+.large-text nav {
+    font-size: 1rem;
+}
+
+/* Button text stays readable */
+.large-text .btn-primary,
+.large-text .btn-secondary {
+    font-size: 0.9375rem;
+    white-space: nowrap;
 }
 
 /* ============================
